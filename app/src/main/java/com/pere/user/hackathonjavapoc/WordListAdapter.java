@@ -32,13 +32,25 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @Override
     public void onBindViewHolder(@NonNull WordViewHolder wordViewHolder, int i) {
         if(words != null){
-
+            Word word = words.get(i);
+            wordViewHolder.textView.setText(word.getWord());
+        } else {
+            wordViewHolder.textView.setText("No word");
         }
+    }
+
+    void setWords(List<Word> words){
+        this.words = words;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (words != null) {
+            return words.size();
+        } else {
+            return 0;
+        }
     }
 
      class WordViewHolder extends RecyclerView.ViewHolder{
